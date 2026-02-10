@@ -1,12 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
   const userArray = [];
-  numberEntry(userArray);
-  numberEntry(userArray);
-  console.log("add ", add(userArray[0], userArray[1]));
-  console.log("subtract ", subtract(userArray[0], userArray[1]));
-  console.log("multiply ", multiply(userArray[0], userArray[1]));
-  console.log("divide ", divide(userArray[0], userArray[1]));
+  numberOne(userArray);
+  numberTwo(userArray);
 });
+
+function numberOne(array) {
+  numberEntry(array);
+}
+
+function numberTwo(array) {
+  numberEntry(array);
+}
+
+function operate() {}
 
 function numberEntry(array) {
   let validatedNumber = null;
