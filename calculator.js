@@ -50,28 +50,27 @@ document.addEventListener("DOMContentLoaded", function () {
           break;
         case "add":
           currentArrayPosition = 1;
+          calculate(userArray, currentOperation);
           currentOperation = "add";
-          console.log("OPERATION: ", currentOperation);
           break;
         case "subtract":
           currentArrayPosition = 1;
+          calculate(userArray, currentOperation);
           currentOperation = "subtract";
-          console.log("OPERATION: ", currentOperation);
           break;
         case "multiply":
           currentArrayPosition = 1;
+          calculate(userArray, currentOperation);
           currentOperation = "multiply";
-          console.log("OPERATION: ", currentOperation);
           break;
         case "divide":
           currentArrayPosition = 1;
+          calculate(userArray, currentOperation);
           currentOperation = "divide";
-          console.log("OPERATION: ", currentOperation);
           break;
         case "equals":
-          userArray[0] = operate(userArray, currentOperation);
-          userArray[1] = 0;
-          console.log("RESULT: ", userArray[0]);
+          currentArrayPosition = 1;
+          calculate(userArray, currentOperation);
           currentArrayPosition = 0;
           currentOperation = null;
           break;
@@ -96,6 +95,13 @@ function enterValue(array, n, position) {
 
 function attachNumber(number, currentValue) {
   return parseInt(currentValue.toString() + number, 10);
+}
+
+function calculate(array, operation) {
+  if (array[0] != 0 && array[1] != 0) {
+    array[0] = operate(array, operation);
+    array[1] = 0;
+  }
 }
 
 function operate(array, operation) {
