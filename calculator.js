@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const calculatorButtons = document.querySelectorAll("button");
+  const result = document.createElement("div");
+  result.classList.add("result");
+  result.textContent = "0";
+  container.appendChild(result);
+
   let userArray = [0, 0];
   let currentArrayPosition = 0;
   let currentOperation = null;
@@ -11,76 +16,91 @@ document.addEventListener("DOMContentLoaded", function () {
         case "zero":
           currentNumber = "0";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "one":
           currentNumber = "1";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "two":
           currentNumber = "2";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "three":
           currentNumber = "3";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "four":
           currentNumber = "4";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "five":
           currentNumber = "5";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "six":
           currentNumber = "6";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "seven":
           currentNumber = "7";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "eight":
           currentNumber = "8";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "nine":
           currentNumber = "9";
           enterValue(userArray, currentNumber, currentArrayPosition);
+          result.textContent = userArray[0];
           break;
         case "add":
           currentArrayPosition = 1;
           calculate(userArray, currentOperation);
+          result.textContent = userArray[0];
           currentOperation = "add";
           break;
         case "subtract":
           currentArrayPosition = 1;
           calculate(userArray, currentOperation);
+          result.textContent = userArray[0];
           currentOperation = "subtract";
           break;
         case "multiply":
           currentArrayPosition = 1;
           calculate(userArray, currentOperation);
+          result.textContent = userArray[0];
           currentOperation = "multiply";
           break;
         case "divide":
           currentArrayPosition = 1;
           calculate(userArray, currentOperation);
+          result.textContent = userArray[0];
           currentOperation = "divide";
           break;
         case "equals":
           currentArrayPosition = 1;
           calculate(userArray, currentOperation);
+          result.textContent = userArray[0];
           currentArrayPosition = 0;
           currentOperation = null;
           break;
         case "allClear":
           userArray = [0, 0];
+          result.textContent = userArray[0];
           currentArrayPosition = 0;
           currentOperation = null;
           break;
       }
-      console.log("ARRAY: ", userArray);
     });
   });
 });
