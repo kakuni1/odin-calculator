@@ -2,16 +2,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const calculatorButtons = document.querySelectorAll("button");
   const firstNumber = document.createElement("div");
   const secondNumber = document.createElement("div");
-  const symbol = document.createElement("div");
+  const resultNumber = document.createElement("div");
+  const operationSymbol = document.createElement("div");
   firstNumber.classList.add("firstNumber");
   secondNumber.classList.add("secondNumber");
-  symbol.classList.add("symbol");
+  resultNumber.classList.add("resultNumber");
+  operationSymbol.classList.add("operationSymbol");
   firstNumber.textContent = "0";
   secondNumber.textContent = "";
-  symbol.textContent = "";
+  resultNumber.textContent = "";
+  operationSymbol.textContent = "";
   container.appendChild(firstNumber);
   container.appendChild(secondNumber);
-  container.appendChild(symbol);
+  container.appendChild(resultNumber);
+  container.appendChild(operationSymbol);
 
   // userArray[0] : calculation result
   // userArray[1] : 1st number slot
@@ -21,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentArrayPosition = 1;
   let currentNumber = null;
   let currentOperation = null;
-  let result = null;
 
   calculatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -29,52 +32,52 @@ document.addEventListener("DOMContentLoaded", function () {
         case "zero":
           currentNumber = "0";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "one":
           currentNumber = "1";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "two":
           currentNumber = "2";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "three":
           currentNumber = "3";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "four":
           currentNumber = "4";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "five":
           currentNumber = "5";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "six":
           currentNumber = "6";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "seven":
           currentNumber = "7";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "eight":
           currentNumber = "8";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "nine":
           currentNumber = "9";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(userArray, firstNumber, secondNumber, resultNumber);
           break;
         case "add":
           currentArrayPosition = 2;
@@ -84,8 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
             userArray,
             firstNumber,
             secondNumber,
-            result,
-            symbol.textContent,
+            resultNumber,
+            operationSymbol,
           );
           currentOperation = "add";
           break;
@@ -97,8 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
             userArray,
             firstNumber,
             secondNumber,
-            result,
-            symbol.textContent,
+            resultNumber,
+            operationSymbol,
           );
           currentOperation = "subtract";
           break;
@@ -110,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
             userArray,
             firstNumber,
             secondNumber,
-            result,
-            symbol.textContent,
+            resultNumber,
+            operationSymbol,
           );
           currentOperation = "multiply";
           break;
@@ -123,8 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
             userArray,
             firstNumber,
             secondNumber,
-            result,
-            symbol.textContent,
+            resultNumber,
+            operationSymbol,
           );
           currentOperation = "divide";
           break;
@@ -135,8 +138,8 @@ document.addEventListener("DOMContentLoaded", function () {
             userArray,
             firstNumber,
             secondNumber,
-            result,
-            symbol.textContent,
+            resultNumber,
+            operationSymbol,
           );
           currentArrayPosition = 1;
           currentOperation = null;
@@ -147,8 +150,8 @@ document.addEventListener("DOMContentLoaded", function () {
             userArray,
             firstNumber,
             secondNumber,
-            result,
-            symbol.textContent,
+            resultNumber,
+            operationSymbol,
           );
           currentArrayPosition = 1;
           currentOperation = null;
@@ -160,8 +163,8 @@ document.addEventListener("DOMContentLoaded", function () {
             userArray,
             firstNumber,
             secondNumber,
-            result,
-            symbol.textContent,
+            resultNumber,
+            operationSymbol,
           );
           currentArrayPosition = 1;
           currentOperation = null;
@@ -176,7 +179,7 @@ function displayAll(array, first, second, result, symbol) {
   displayFirstNumber(array, first);
   displaySecondNumber(array, second);
   displayResultNumber(array, result);
-  displaySymbol(array, symbol);
+  if (symbol) displaySymbol(array, symbol);
 }
 
 function displayFirstNumber(array, first) {
@@ -188,11 +191,11 @@ function displaySecondNumber(array, second) {
 }
 
 function displayResultNumber(array, result) {
-  result = array[0];
+  result.textContent = array[0];
 }
 
 function displaySymbol(array, symbol) {
-  symbol = array[3];
+  symbol.textContent = array[3] !== undefined ? array[3] : "";
 }
 
 function enterValue(array, n, position) {
