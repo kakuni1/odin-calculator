@@ -2,24 +2,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const calculatorButtons = document.querySelectorAll("button");
   const firstNumber = document.createElement("div");
   const secondNumber = document.createElement("div");
-  const resultNumber = document.createElement("div");
   firstNumber.classList.add("firstNumber");
   secondNumber.classList.add("secondNumber");
-  resultNumber.classList.add("resultNumber");
   firstNumber.textContent = "0";
   secondNumber.textContent = "";
-  resultNumber.textContent = "";
   container.appendChild(firstNumber);
   container.appendChild(secondNumber);
-  container.appendChild(resultNumber);
 
   // userArray[0] : calculation result
   // userArray[1] : 1st number slot
   // userArray[2] : 2nd number slot
+  // userArray[3] : math operation symbol
   let userArray = [0, 0, 0, ""];
   let currentArrayPosition = 1;
   let currentNumber = null;
   let currentOperation = null;
+  let result = null;
 
   calculatorButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -27,98 +25,97 @@ document.addEventListener("DOMContentLoaded", function () {
         case "zero":
           currentNumber = "0";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "one":
           currentNumber = "1";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "two":
           currentNumber = "2";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "three":
           currentNumber = "3";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "four":
           currentNumber = "4";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "five":
           currentNumber = "5";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "six":
           currentNumber = "6";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "seven":
           currentNumber = "7";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "eight":
           currentNumber = "8";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "nine":
           currentNumber = "9";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           break;
         case "add":
           currentArrayPosition = 2;
           userArray[3] = "+";
           calculate(userArray, currentOperation);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           currentOperation = "add";
           break;
         case "subtract":
           currentArrayPosition = 2;
           userArray[3] = "-";
           calculate(userArray, currentOperation);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           currentOperation = "subtract";
           break;
         case "multiply":
           currentArrayPosition = 2;
           userArray[3] = "*";
           calculate(userArray, currentOperation);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           currentOperation = "multiply";
           break;
         case "divide":
           currentArrayPosition = 2;
           userArray[3] = "/";
           calculate(userArray, currentOperation);
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           currentOperation = "divide";
           break;
         case "equal":
           calculate(userArray, currentOperation);
           userArray[3] = "=";
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           currentArrayPosition = 1;
           currentOperation = null;
           break;
         case "clear":
           userArray = [0, 0, 0, ""];
           userArray[3] = "";
-          displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          displayAll(userArray, firstNumber, secondNumber, result);
           currentArrayPosition = 1;
           currentOperation = null;
           break;
       }
       console.log(userArray);
-      // console.log(currentOperation);
     });
   });
 });
@@ -138,7 +135,7 @@ function displaySecondNumber(array, second) {
 }
 
 function displayResultNumber(array, result) {
-  result.textContent = array[0];
+  result = array[0];
 }
 
 function enterValue(array, n, position) {
