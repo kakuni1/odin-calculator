@@ -2,12 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const calculatorButtons = document.querySelectorAll("button");
   const firstNumber = document.createElement("div");
   const secondNumber = document.createElement("div");
+  const symbol = document.createElement("div");
   firstNumber.classList.add("firstNumber");
   secondNumber.classList.add("secondNumber");
+  symbol.classList.add("symbol");
   firstNumber.textContent = "0";
   secondNumber.textContent = "";
+  symbol.textContent = "";
   container.appendChild(firstNumber);
   container.appendChild(secondNumber);
+  container.appendChild(symbol);
 
   // userArray[0] : calculation result
   // userArray[1] : 1st number slot
@@ -76,41 +80,77 @@ document.addEventListener("DOMContentLoaded", function () {
           currentArrayPosition = 2;
           userArray[3] = "+";
           calculate(userArray, currentOperation);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(
+            userArray,
+            firstNumber,
+            secondNumber,
+            result,
+            symbol.textContent,
+          );
           currentOperation = "add";
           break;
         case "subtract":
           currentArrayPosition = 2;
           userArray[3] = "-";
           calculate(userArray, currentOperation);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(
+            userArray,
+            firstNumber,
+            secondNumber,
+            result,
+            symbol.textContent,
+          );
           currentOperation = "subtract";
           break;
         case "multiply":
           currentArrayPosition = 2;
           userArray[3] = "*";
           calculate(userArray, currentOperation);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(
+            userArray,
+            firstNumber,
+            secondNumber,
+            result,
+            symbol.textContent,
+          );
           currentOperation = "multiply";
           break;
         case "divide":
           currentArrayPosition = 2;
           userArray[3] = "/";
           calculate(userArray, currentOperation);
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(
+            userArray,
+            firstNumber,
+            secondNumber,
+            result,
+            symbol.textContent,
+          );
           currentOperation = "divide";
           break;
         case "equal":
           calculate(userArray, currentOperation);
           userArray[3] = "=";
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(
+            userArray,
+            firstNumber,
+            secondNumber,
+            result,
+            symbol.textContent,
+          );
           currentArrayPosition = 1;
           currentOperation = null;
           break;
         case "clear":
           userArray = [0, 0, 0, ""];
           userArray[3] = "";
-          displayAll(userArray, firstNumber, secondNumber, result);
+          displayAll(
+            userArray,
+            firstNumber,
+            secondNumber,
+            result,
+            symbol.textContent,
+          );
           currentArrayPosition = 1;
           currentOperation = null;
           break;
@@ -120,10 +160,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function displayAll(array, first, second, result) {
+function displayAll(array, first, second, result, symbol) {
   displayFirstNumber(array, first);
   displaySecondNumber(array, second);
   displayResultNumber(array, result);
+  displaySymbol(array, symbol);
 }
 
 function displayFirstNumber(array, first) {
@@ -136,6 +177,10 @@ function displaySecondNumber(array, second) {
 
 function displayResultNumber(array, result) {
   result = array[0];
+}
+
+function displaySymbol(array, symbol) {
+  symbol = array[3];
 }
 
 function enterValue(array, n, position) {
