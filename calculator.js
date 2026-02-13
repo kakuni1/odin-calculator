@@ -143,7 +143,19 @@ document.addEventListener("DOMContentLoaded", function () {
           break;
         case "clear":
           userArray = [0, 0, 0, ""];
+          displayAll(
+            userArray,
+            firstNumber,
+            secondNumber,
+            result,
+            symbol.textContent,
+          );
+          currentArrayPosition = 1;
+          currentOperation = null;
+          break;
+        case "back":
           userArray[3] = "";
+          userArray[2] = 0;
           displayAll(
             userArray,
             firstNumber,
