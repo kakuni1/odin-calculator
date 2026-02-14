@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // userArray[1] : 1st number slot
   // userArray[2] : 2nd number slot
   // userArray[3] : math operation symbol
-  let userArray = [0, 0, 0, ""];
+  let userArray = ["0", "0", "0", ""];
   let currentArrayPosition = 1;
-  let currentNumber = null;
+  let currentNumber = 0;
   let currentOperation = null;
 
   calculatorButtons.forEach((button) => {
@@ -78,6 +78,19 @@ document.addEventListener("DOMContentLoaded", function () {
           currentNumber = "9";
           enterValue(userArray, currentNumber, currentArrayPosition);
           displayAll(userArray, firstNumber, secondNumber, resultNumber);
+          break;
+        case "decimal":
+          if (!userArray[currentArrayPosition].toString().includes(".")) {
+            userArray[currentArrayPosition] =
+              userArray[currentArrayPosition].toString() + ".";
+          }
+          displayAll(
+            userArray,
+            firstNumber,
+            secondNumber,
+            resultNumber,
+            operationSymbol,
+          );
           break;
         case "add":
           currentArrayPosition = 2;
@@ -145,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
           currentOperation = null;
           break;
         case "clear":
-          userArray = [0, 0, 0, ""];
+          userArray = ["0", "0", "0", ""];
           displayAll(
             userArray,
             firstNumber,
@@ -175,19 +188,31 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function displayAll(array, first, second, result, symbol) {
-  displayFirstNumber(array, first);
-  displaySecondNumber(array, second);
+function displayAll(array, first, second, result, symbol, decimal) {
+  displayFirstNumber(array, first, decimal);
+  displaySecondNumber(array, second, decimal);
   displayResultNumber(array, result);
   if (symbol) displaySymbol(array, symbol);
 }
 
-function displayFirstNumber(array, first) {
-  first.textContent = array[1] !== 0 ? array[1] : "0";
+function displayFirstNumber(array, first, decimal) {
+  const value = array[1] !== 0 ? array[1] : "0";
+  first.textContent =
+    decimal === true
+      ? value.toString().includes(".")
+        ? value
+        : value + "."
+      : value;
 }
 
-function displaySecondNumber(array, second) {
-  second.textContent = array[2];
+function displaySecondNumber(array, second, decimal) {
+  const value = array[2];
+  second.textContent =
+    decimal === true
+      ? value.toString().includes(".")
+        ? value
+        : value + "."
+      : value;
 }
 
 function displayResultNumber(array, result) {
@@ -199,35 +224,41 @@ function displaySymbol(array, symbol) {
 }
 
 function enterValue(array, n, position) {
-  const num = parseInt(n, 10);
-
-  if (array[0] === 0 && array[1] === 0 && array[2] === 0) array[1] = num;
-  else if (position === 1) array[1] = attachNumber(n, array[1]);
-  else if (position === 2) array[2] = attachNumber(n, array[2]);
+  if (array[0] === 0 && array[1] === 0 && array[2] === 0) array[1] = n;
+  else if (position === 1) {
+    if (array[1].toString() === "0") array[1] = n;
+    else array[1] = attachNumber(n, array[1]);
+  } else if (position === 2) {
+    if (array[2].toString() === "0") array[2] = n;
+    else array[2] = attachNumber(n, array[2]);
+  }
 }
 
 function attachNumber(number, currentValue) {
-  return parseInt(currentValue.toString() + number, 10);
+  return currentValue.toString() + number.toString();
 }
 
 function calculate(array, operation) {
   if (array[1] != 0 && array[2] != 0) {
-    array[0] = operate(array, operation);
-    array[1] = array[0];
-    array[2] = 0;
+    array[0] = operate(array, operation).toString();
+    array[0] = (array[0] % 1 === 0 ? parseInt(array[0]) : array[0]).toString();
+    array[1] = array[0].toString();
+    array[2] = "0".toString();
   }
 }
 
 function operate(array, operation) {
+  const a = parseFloat(array[1]);
+  const b = parseFloat(array[2]);
   switch (operation) {
     case "add":
-      return add(array[1], array[2]);
+      return add(a, b);
     case "subtract":
-      return subtract(array[1], array[2]);
+      return subtract(a, b);
     case "multiply":
-      return multiply(array[1], array[2]);
+      return multiply(a, b);
     case "divide":
-      return divide(array[1], array[2]);
+      return divide(a, b);
   }
 }
 
@@ -244,5 +275,5 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-  return (a / b).toFixed(3);
+  return (a / b).toFixed(2);
 }
