@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // userArray[1] : 1st number slot
   // userArray[2] : 2nd number slot
   // userArray[3] : math operation symbol
-  let userArray = ["0", "0", "0", ""];
+  let userArray = ["0", "", "", ""];
   let currentArrayPosition = 1;
   let currentNumber = 0;
   let currentOperation = null;
@@ -145,7 +145,9 @@ document.addEventListener("DOMContentLoaded", function () {
           currentOperation = "divide";
           break;
         case "equal":
-          calculate(userArray, currentOperation);
+          if (currentOperation === "divide" && parseFloat(userArray[2]) === 0)
+            userArray[0] = "ERROR";
+          else calculate(userArray, currentOperation);
           userArray[3] = "=";
           displayAll(
             userArray,
@@ -158,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
           currentOperation = null;
           break;
         case "clear":
-          userArray = ["0", "0", "0", ""];
+          userArray = ["0", "", "", ""];
           displayAll(
             userArray,
             firstNumber,
@@ -171,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
           break;
         case "back":
           userArray[3] = "";
-          userArray[2] = 0;
+          userArray[2] = "";
           displayAll(
             userArray,
             firstNumber,
