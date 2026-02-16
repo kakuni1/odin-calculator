@@ -1,3 +1,77 @@
 body {
-    background-color: gray;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: "WDXL Lubrifont TC", sans-serif;
+  font-weight: 500;
+  list-style: normal;
+}
+
+#container {
+  background-color: #222323;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  height: 400px;
+  width: 360px;
+  padding: 5px 25px 25px;
+  box-sizing: border-box;
+  opacity: 0.82;
+}
+
+#container > .row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+#container button {
+  flex: 1;
+  font-size: 18px;
+  padding: 10px 15px;
+  margin: 0px 5px;
+  border: none;
+  border-radius: 5px;
+  min-width: 0;
+  cursor: pointer;
+  color: #222323;
+  opacity: var(--opacity-level, 0.8);
+  font-family:
+    "WDXL Lubrifont TC",
+    -apple-system,
+    sans-serif;
+  font-weight: 400;
+  list-style: normal;
+}
+
+#container > .top button {
+  font-size: 16px;
+}
+
+.top {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0px;
+  width: 100%;
+}
+
+.display-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.displayN,
+.displayS {
+  color: var(--color, #f0f6f0);
+  font-size: 32px;
+  opacity: 0.9;
 }
