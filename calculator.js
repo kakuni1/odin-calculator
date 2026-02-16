@@ -8,20 +8,24 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentNumber = 0;
   let currentOperation = null;
 
-  const displayN = document.createElement("div");
-  const displayS = document.createElement("div");
-  displayN.classList.add("displayN");
-  displayS.classList.add("displayS");
+  const displayFirstNumber = document.createElement("div");
+  const displayOperator = document.createElement("div");
+  const displaySecondNumber = document.createElement("div");
+  displayFirstNumber.classList.add("displayFirstNumber");
+  displayOperator.classList.add("displayOperator");
+  displaySecondNumber.classList.add("displaySecondNumber");
   const displayContainer = document.createElement("div");
   const calculatorButtons = document.querySelectorAll("button");
   const container = document.getElementById("container");
   displayContainer.classList.add("display-container");
-  displayContainer.appendChild(displayN);
-  displayContainer.appendChild(displayS);
+  displayContainer.appendChild(displayFirstNumber);
+  displayContainer.appendChild(displayOperator);
+  displayContainer.appendChild(displaySecondNumber);
   container.insertBefore(displayContainer, container.firstChild);
 
-  displayN.textContent = "0";
-  displayS.textContent = "";
+  displayFirstNumber.textContent = "0";
+  displaySecondNumber.textContent = "";
+  displayOperator.textContent = "";
 
   calculatorButtons.forEach((button) => {
     button.addEventListener("mouseenter", () =>
@@ -35,109 +39,199 @@ document.addEventListener("DOMContentLoaded", function () {
         case "zero":
           currentNumber = "0";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "one":
           currentNumber = "1";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "two":
           currentNumber = "2";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "three":
           currentNumber = "3";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "four":
           currentNumber = "4";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "five":
           currentNumber = "5";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "six":
           currentNumber = "6";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "seven":
           currentNumber = "7";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "eight":
           currentNumber = "8";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "nine":
           currentNumber = "9";
           enterValue(userArray, currentNumber, currentArrayPosition);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "decimal":
           if (!userArray[currentArrayPosition].toString().includes(".")) {
             userArray[currentArrayPosition] =
               userArray[currentArrayPosition].toString() + ".";
           }
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           break;
         case "add":
           currentArrayPosition = 2;
           userArray[3] = "+";
           calculate(userArray, currentOperation);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           currentOperation = "add";
           break;
         case "subtract":
           currentArrayPosition = 2;
           userArray[3] = "-";
           calculate(userArray, currentOperation);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           currentOperation = "subtract";
           break;
         case "multiply":
           currentArrayPosition = 2;
           userArray[3] = "*";
           calculate(userArray, currentOperation);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           currentOperation = "multiply";
           break;
         case "divide":
           currentArrayPosition = 2;
           userArray[3] = "/";
           calculate(userArray, currentOperation);
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           currentOperation = "divide";
           break;
         case "equal":
           if (currentOperation === "divide" && parseFloat(userArray[2]) === 0) {
             userArray[0] = "ERROR";
-            displayN.style.setProperty("--color", "#f7768e");
+            displayFirstNumber.style.setProperty("--color", "#f7768e");
           } else calculate(userArray, currentOperation);
           userArray[3] = "=";
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           currentArrayPosition = 1;
           currentOperation = null;
           break;
         case "clear":
           userArray = ["0", "", "", ""];
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           currentArrayPosition = 1;
           currentOperation = null;
-          displayN.style.setProperty("--color", "#f0f6f0");
+          displayFirstNumber.style.setProperty("--color", "#f0f6f0");
           break;
         case "back":
           userArray[3] = "";
           userArray[2] = "";
-          display(userArray, displayN, displayS);
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
           currentArrayPosition = 1;
           currentOperation = null;
           break;
@@ -147,20 +241,35 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function display(array, displayN, displayS) {
-  // show "result", after "calculate" or "clear"
+function display(array, displayNumberOne, displayNumberTwo, displayOperator) {
+  // result (after "calculate" or "clear")
+  // no number, no operator
   if (
     array[0] !== "0" ||
     (array[0] === "0" && array[1] === "" && array[2] === "")
-  )
-    displayN.textContent = array[0];
-  // show "first" entry, "second" slot empty
-  else if (array[1] !== "0" && array[2] === "" && array[3] === "")
-    displayN.textContent = array[1];
-  // show "second" entry, prioritize showing "second" slot over "first"
+  ) {
+    displayNumberOne.textContent = array[0];
+    displayOperator.textContent = "";
+    displayNumberTwo.textContent = "";
+  } // first number
+  else if (array[1] !== "" && array[3] === "") {
+    displayNumberOne.textContent = array[1];
+    displayOperator.textContent = "";
+    displayNumberTwo.textContent = "";
+  } // first number with operator
+  else if (array[2] === "" && array[3] !== "") {
+    displayNumberOne.textContent = array[1];
+    displayOperator.textContent = array[3];
+    displayNumberTwo.textContent = "";
+  } // first & second number with operator
   else if (array[3] !== "" && array[2] !== "") {
-    displayN.textContent = array[2];
-    displayS.textContent = array[3];
+    displayNumberOne.textContent = array[1];
+    displayOperator.textContent = array[3];
+    displayNumberTwo.textContent = array[2];
+  } // clear (reset) on "equal" state
+  if (array[3] === "=") {
+    displayOperator.textContent = "";
+    displayNumberTwo.textContent = "";
   }
 }
 
