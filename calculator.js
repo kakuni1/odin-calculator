@@ -244,7 +244,14 @@ document.addEventListener("DOMContentLoaded", function () {
 function display(array, displayNumberOne, displayNumberTwo, displayOperator) {
   // result (after "calculate" or "clear")
   // no number, no operator
-  if (
+  if (array[0] === array[1] && array[2] !== "") {
+    displayNumberTwo.textContent = array[2];
+    displayOperator.textContent = ` ${array[3]} `;
+  } else if (array[0] === array[1]) {
+    displayNumberOne.textContent = array[0];
+    displayNumberTwo.textContent = "";
+    displayOperator.textContent = ` ${array[3]} `;
+  } else if (
     array[0] !== "0" ||
     (array[0] === "0" && array[1] === "" && array[2] === "")
   ) {
