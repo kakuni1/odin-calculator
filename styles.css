@@ -67,12 +67,14 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: end;
+    padding: 20px 10px 0px 0px;
 }
 
 .displayFirstNumber,
 .displaySecondNumber,
 .displayOperator {
     color: var(--color, #f0f6f0);
+    white-space: preserve;
     font-size: 32px;
     opacity: 0.9;
 }

@@ -259,12 +259,12 @@ function display(array, displayNumberOne, displayNumberTwo, displayOperator) {
   } // first number with operator
   else if (array[2] === "" && array[3] !== "") {
     displayNumberOne.textContent = array[1];
-    displayOperator.textContent = array[3];
+    displayOperator.textContent = ` ${array[3]} `;
     displayNumberTwo.textContent = "";
   } // first & second number with operator
   else if (array[3] !== "" && array[2] !== "") {
     displayNumberOne.textContent = array[1];
-    displayOperator.textContent = array[3];
+    displayOperator.textContent = ` ${array[3]} `;
     displayNumberTwo.textContent = array[2];
   } // clear (reset) on "equal" state
   if (array[3] === "=") {
