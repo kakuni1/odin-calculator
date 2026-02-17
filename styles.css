@@ -7,8 +7,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "WDXL Lubrifont TC", sans-serif;
-    font-weight: 500;
-    list-style: normal;
+    font-weight: 400;
 }
 
 #container {
@@ -40,7 +39,6 @@ body {
     margin: 0px 5px;
     border: none;
     border-radius: 5px;
-    min-width: 0;
     cursor: pointer;
     color: #222323;
     opacity: var(--opacity-level, 0.8);
@@ -49,7 +47,6 @@ body {
         -apple-system,
         sans-serif;
     font-weight: 400;
-    list-style: normal;
 }
 
 #container > .top button {
