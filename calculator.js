@@ -115,12 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function calculate(array, operation) {
-    if (
-      array[1] !== "" &&
-      array[2] !== "" &&
-      array[1] !== "0" &&
-      array[2] !== "0"
-    ) {
+    if (array[1] !== "" && array[2] !== "") {
       array[0] = operate(array, operation).toString();
       array[0] = (
         array[0] % 1 === 0 ? parseInt(array[0]) : array[0]
