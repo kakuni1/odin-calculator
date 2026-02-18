@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function calculate(array, operation) {
-    if (array[1] != 0 && array[2] != 0) {
+    if (array[1] !== 0 && array[2] !== 0) {
       array[0] = operate(array, operation).toString();
       array[0] = (
         array[0] % 1 === 0 ? parseInt(array[0]) : array[0]
@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (userArray[1] === "") return;
         currentArrayPosition = 2;
         userArray[3] = "+";
-        calculate(userArray, currentOperation);
+        if (currentOperation !== null) calculate(userArray, currentOperation);
         display(
           userArray,
           displayFirstNumber,
@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (userArray[1] === "") return;
         currentArrayPosition = 2;
         userArray[3] = "-";
-        calculate(userArray, currentOperation);
+        if (currentOperation !== null) calculate(userArray, currentOperation);
         display(
           userArray,
           displayFirstNumber,
@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (userArray[1] === "") return;
         currentArrayPosition = 2;
         userArray[3] = "*";
-        calculate(userArray, currentOperation);
+        if (currentOperation !== null) calculate(userArray, currentOperation);
         display(
           userArray,
           displayFirstNumber,
@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (userArray[1] === "") return;
         currentArrayPosition = 2;
         userArray[3] = "/";
-        calculate(userArray, currentOperation);
+        if (currentOperation !== null) calculate(userArray, currentOperation);
         display(
           userArray,
           displayFirstNumber,
