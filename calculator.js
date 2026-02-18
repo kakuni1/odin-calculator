@@ -49,6 +49,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   function display(array, displayNumberOne, displayNumberTwo, displayOperator) {
+    // check length, print "LIMIT" if too large
+    if (
+      array[1].length === 11 ||
+      array[2].length === 11 ||
+      array[0].length === 21
+    ) {
+      array[0] = "LIMIT";
+      displayFirstNumber.style.setProperty("--color", "#f7768e");
+      array[1] = "";
+      array[2] = "";
+      array[3] = "";
+    }
     // result (after "calculate" or "clear")
     // no number, no operator
     if (array[0] === array[1] && array[2] !== "") {
