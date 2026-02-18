@@ -272,6 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         break;
       case "+":
+        if (userArray[1] === "") return;
         currentArrayPosition = 2;
         userArray[3] = "+";
         calculate(userArray, currentOperation);
@@ -284,6 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentOperation = "add";
         break;
       case "-":
+        if (userArray[1] === "") return;
         currentArrayPosition = 2;
         userArray[3] = "-";
         calculate(userArray, currentOperation);
@@ -296,6 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentOperation = "subtract";
         break;
       case "*":
+        if (userArray[1] === "") return;
         currentArrayPosition = 2;
         userArray[3] = "*";
         calculate(userArray, currentOperation);
@@ -308,6 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentOperation = "multiply";
         break;
       case "/":
+        if (userArray[1] === "") return;
         currentArrayPosition = 2;
         userArray[3] = "/";
         calculate(userArray, currentOperation);
@@ -347,6 +351,10 @@ document.addEventListener("DOMContentLoaded", function () {
         displayFirstNumber.style.setProperty("--color", "#f0f6f0");
         break;
       case "Backspace":
+        if (userArray[0] === "LIMIT") {
+          userArray[0] = "0";
+          displayFirstNumber.style.setProperty("--color", "#f0f6f0");
+        }
         if (currentArrayPosition === 1 && userArray[1].length > 0) {
           userArray[1] = userArray[1].slice(0, -1);
           if (userArray[1].length === 0) userArray[1] = "";
