@@ -161,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function () {
     switch (entry) {
       case "0":
         currentNumber = "0";
+        if (userArray[1] === "-") userArray[1] = "";
         enterValue(userArray, currentNumber, currentArrayPosition);
         display(
           userArray,
@@ -285,6 +286,16 @@ document.addEventListener("DOMContentLoaded", function () {
         currentOperation = "add";
         break;
       case "-":
+        if (currentArrayPosition === 1 && userArray[1] === "") {
+          userArray[1] = "-";
+          display(
+            userArray,
+            displayFirstNumber,
+            displaySecondNumber,
+            displayOperator,
+          );
+          return;
+        }
         if (userArray[1] === "") return;
         currentArrayPosition = 2;
         userArray[3] = "-";
